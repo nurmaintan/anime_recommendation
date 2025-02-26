@@ -258,7 +258,7 @@ Di mana:
 - Tidak Mempertimbangkan Urutan: Cosine Similarity hanya mengukur kesamaan arah, tidak mempertimbangkan urutan kata dalam teks atau elemen dalam vektor.
 - Tidak Optimal untuk Perbedaan Kecil: Jika dua vektor sangat mirip tetapi memiliki sedikit perbedaan, cosine similarity mungkin tidak memberikan informasi yang cukup akurat tentang seberapa mirip mereka sebenarnya.
 
-**Hasil Rekomendasi Cosine Similarity untuk anime 'Shingeki no Kyojin:**
+**Hasil Rekomendasi Cosine Similarity untuk anime 'Shingeki no Kyojin':**
 
 ![image](https://github.com/user-attachments/assets/b64d7c29-31d5-4f23-905c-46deb41e6513)
 
@@ -295,7 +295,46 @@ def anime_euclidean(anime_name, similarity_data=euclidean_sim_df, items=anime_ne
 Di mana:
 - A = (a1,a2,...an) dan B=(b1,b2,...,bn) adalah dua vektor yang dibandingkan.
 - ai dan 𝑏𝑖 adalah elemen-elemen dari vektor 𝐴 dan 𝐵, masing-masing.​
- 
+
+**Kelebihan:**
+- Mudah Dipahami dan Intuitif: Euclidean Distance mudah dipahami dan cukup intuitif karena mengukur jarak dalam ruang geometris.
+- Sederhana dalam Implementasi: Algoritma untuk menghitung Euclidean Distance sangat mudah diterapkan, yang membuatnya cocok untuk banyak aplikasi.
+- Efektif pada Data dengan Skala yang Sama: Metode ini efektif ketika data yang digunakan memiliki skala yang sama atau hampir sama.
+
+**Kekurangan:**
+- Sensitif terhadap Skala Data: Jika fitur-fitur dalam data memiliki skala yang berbeda, fitur dengan skala lebih besar dapat mendominasi perhitungan Euclidean Distance, sehingga distorsi dapat terjadi. Misalnya, jika satu fitur memiliki nilai yang jauh lebih besar daripada fitur lain, maka perbedaan pada fitur kecil tidak akan berpengaruh besar pada jarak.
+Solusi: Normalisasi atau standarisasi data sebelum menghitung Euclidean Distance untuk mengatasi masalah ini.
+- Tidak Mempertimbangkan Korelasi Antar Fitur: Euclidean Distance tidak mempertimbangkan hubungan atau korelasi antar fitur. Jadi, meskipun dua vektor memiliki nilai yang sangat berbeda pada beberapa elemen, mereka mungkin tetap dianggap mirip jika jarak antar elemen-elemen lainnya kecil.
+- Kesulitan pada Data Sparse: Jika data sangat jarang atau sparse (seperti banyak nol pada vektor), maka Euclidean Distance mungkin tidak dapat memberikan hasil yang efektif karena perhitungan jarak berdasarkan elemen-elemen yang tidak ada (nol) bisa menjadi kurang berarti.
+
+**Hasil Rekomendasi Cosine Similarity untuk anime 'Death Note':**
+
+![image](https://github.com/user-attachments/assets/40c937b0-7718-4895-bc60-7b699e5a1001)
+
+Hasil rekomendasinya dapat dilihat pada gambar di bawah ini.
+
+![image](https://github.com/user-attachments/assets/7332763d-5e22-4946-bafc-72a5dc35bce2)
+
+## Evaluation
+
+Untuk mengevaluasi kinerja sistem rekomendasi, metrik Precision at k (P@k) digunakan untuk mengukur seberapa banyak rekomendasi yang relevan ada di antara 10 rekomendasi teratas. 
+
+![image](https://github.com/user-attachments/assets/7937c0fa-3d8a-41e8-b017-aacaec743b23)
+
+Dimana:
+
+- Jumlah rekomendasi relevan dalam k teratas: Ini adalah jumlah item yang relevan yang berhasil ditemukan dalam 10 rekomendasi teratas yang diberikan oleh sistem.
+- k adalah jumlah rekomendasi teratas yang ingin dievaluasi. Biasanya, nilai k diatur menjadi 10, yaitu sistem akan mengevaluasi 10 rekomendasi teratas.
+
+Dalam proyek ini, dua pendekatan, yaitu Cosine Similarity dan Euclidean Distance, diterapkan untuk menghasilkan rekomendasi. Kedua metode tersebut menghasilkan daftar game yang dianggap sesuai dengan preferensi pengguna, dan metrik Precision digunakan untuk mengevaluasi seberapa banyak game yang relevan terdapat dalam 10 rekomendasi teratas.
+
+![image](https://github.com/user-attachments/assets/6e30c0d4-45dc-4d6a-99b4-d1bfcbad9801)
+
+Hasil perbandingan precision ini menunjukkan bahwa semua rekomendasi yang diberikan oleh kedua metode adalah relevan dan termasuk dalam 10 rekomendasi teratas. Dengan kata lain, kedua model berhasil memberikan hanya rekomendasi yang relevan dalam daftar rekomendasi teratas mereka.
+
+## Kesimpulan
+
+Sistem rekomendasi ini berhasil menunjukkan kinerja yang baik dengan menerapkan pendekatan Content-Based Filtering untuk mengukur kesamaan antar anime. Berdasarkan evaluasi, kedua metode, yaitu Cosine Similarity dan Euclidean Distance, memberikan hasil yang memuaskan dalam hal akurasi rekomendasi, dengan Precision yang tinggi pada 10 rekomendasi teratas. Sistem ini efektif membantu pengguna dalam menemukan anime yang sesuai dengan preferensi mereka secara lebih efisien, tanpa tergantung pada data pengguna lain.
 
 
 
